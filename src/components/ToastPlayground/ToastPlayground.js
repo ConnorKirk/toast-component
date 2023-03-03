@@ -40,6 +40,7 @@ function ToastPlayground() {
           </label>
           <div className={styles.inputWrapper}>
             <textarea
+              autoFocus
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               id="message"
