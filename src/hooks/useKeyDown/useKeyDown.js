@@ -11,7 +11,7 @@ export const useKeyDown = (key, handler) => {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => window.removeEventListener("keydown", handleKeyDown);
-  });
+  }, [key, handler]);
 };
 
 export const useEscapeKey = (handler) => {
