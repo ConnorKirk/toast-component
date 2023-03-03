@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Button from "../Button";
+import Toast from "../Toast/Toast";
 
 import styles from "./ToastPlayground.module.css";
 
@@ -10,13 +11,19 @@ function ToastPlayground() {
   const [messageText, setMessageText] = useState("");
   const [variant, setVariant] = useState(VARIANT_OPTIONS[0]);
 
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
     <div className={styles.wrapper}>
       <header>
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-
+      {isVisible && (
+        <Toast variant={variant} handleDismiss={() => setIsVisible(false)}>
+          {messageText}
+        </Toast>
+      )}
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -58,7 +65,7 @@ function ToastPlayground() {
         <div className={styles.row}>
           <div className={styles.label} />
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button>Pop Toast!</Button>
+            <Button onClick={() => setIsVisible(true)}>Pop Toast!</Button>
           </div>
         </div>
       </div>
